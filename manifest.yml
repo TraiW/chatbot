@@ -1,6 +1,6 @@
 applications:
-- name: watson-assistant-simple
+- name: peku
   command: npm start
   path: .
-  memory: 256M
+  memory: 512M
   instances: 1

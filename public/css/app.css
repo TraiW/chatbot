@@ -8,8 +8,19 @@ body {
   font-family: Helvetica Neue for IBM, Helvetica Neue, Helvetica, Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #4690bd;
+   /* #4085C2 blue
+  #00C2AB green */
+  background: #4085C2;
+  background: -moz-linear-gradient(45deg, #4085C2 0%, #00C2AB 100%);
+  background: -webkit-gradient(left bottom, right top, color-stop(0%, #4085C2), color-stop(100%, #00C2AB));
+  background: -webkit-linear-gradient(45deg, #4085C2 0%, #00C2AB 100%);
+  background: -o-linear-gradient(45deg, #4085C2 0%, #00C2AB 100%);
+  background: -ms-linear-gradient(45deg, #4085C2 0%, #00C2AB 100%);
+  background: linear-gradient(45deg, #4085C2 0%, #00C2AB 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#448ef6', endColorstr='#af05a9', GradientType=1 ); 
 }
+
+
 
 div {
   word-wrap: break-word;
@@ -107,6 +118,7 @@ div {
   overflow-x: hidden;
   flex: 1;
 }
+
 
 .message-inner {
   opacity: 0;
@@ -473,4 +485,64 @@ html{
   margin: 3px;
   cursor: pointer;
   display: inline-block;
+}
+
+/* ---- reset ---- */
+
+body {
+  margin: 0;
+  font:normal 75% Arial, Helvetica, sans-serif;
+}
+
+canvas {
+  display: block;
+  vertical-align: bottom;
+}
+
+/* ---- particles.js container ---- */
+
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+/* ---- stats.js ---- */
+
+.count-particles{
+  background: #000022;
+  position: absolute;
+  top: 48px;
+  left: 0;
+  width: 80px;
+  color: #13E8E9;
+  font-size: .8em;
+  text-align: left;
+  text-indent: 4px;
+  line-height: 14px;
+  padding-bottom: 2px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: bold;
+}
+
+.js-count-particles{
+  font-size: 1.1em;
+}
+
+#stats,
+.count-particles{
+  -webkit-user-select: none;
+}
+
+#stats{
+  border-radius: 3px 3px 0 0;
+  overflow: hidden;
+}
+
+.count-particles{
+  border-radius: 0 0 3px 3px;
 }

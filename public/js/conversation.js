@@ -44,6 +44,9 @@ var ConversationPanel = (function () {
     var currentResponsePayloadSetter = Api.setResponsePayload;
     Api.setResponsePayload = function (newPayloadStr) {
       currentResponsePayloadSetter.call(Api, newPayloadStr);
+      // console.log("JSON.parse(newPayloadStr).result "+newPayloadStr)
+      // console.log("repalce BR "+newPayloadStr.replace(/\n/g, "<br />"))
+
       displayMessage(JSON.parse(newPayloadStr).result, settings.authorTypes.watson);
     };
 
@@ -127,6 +130,7 @@ var ConversationPanel = (function () {
     if ((newPayload.output && newPayload.output.generic) ||  newPayload.input){
       // Create new message generic elements
       var responses = buildMessageDomElements(newPayload, isUser);
+     // console.log("responses : "+responses)
       var chatBoxElement = document.querySelector(settings.selectors.chatBox);
       var previousLatest = chatBoxElement.querySelectorAll((isUser ? settings.selectors.fromUser : settings.selectors.fromWatson) +
         settings.selectors.latest);
@@ -146,6 +150,7 @@ var ConversationPanel = (function () {
       var res = responses[index];
       if (res.type !== 'pause') {
         var currentDiv = getDivObject(res, isUser, isTop);
+        //console.log("currentDiv : "+currentDiv)
         chatBoxElement.appendChild(currentDiv);
         // Class to start fade in animation
         currentDiv.classList.add('load');
@@ -171,6 +176,8 @@ var ConversationPanel = (function () {
   // Constructs new DOM element from a message
   function getDivObject(res, isUser, isTop) {
     var classes = [(isUser ? 'from-user' : 'from-watson'), 'latest', (isTop ? 'top' : 'sub')];
+    // console.log("res.innerhtml : "+res.innerhtml)
+
     var messageJson = {
       // <div class='segments'>
       'tagName': 'div',
@@ -191,6 +198,7 @@ var ConversationPanel = (function () {
         }]
       }]
     };
+    // console.log(messageJson)
     return Common.buildDomElement(messageJson);
   }
 
@@ -248,6 +256,10 @@ var ConversationPanel = (function () {
         innerhtml: title + description + img
       });
     } else if (gen.response_type === 'text') {
+      //replace \n with <br>
+      // console.log("Text yep : "+gen.text)
+      // console.log("Text replaced : "+gen.text.replace(/\n/g, "<br>"))
+      gen.text = gen.text.replace(/\n/g, "<br>")
       responses.push({
         type: gen.response_type,
         innerhtml: gen.text
@@ -272,7 +284,7 @@ var ConversationPanel = (function () {
     }
   }
 
-  // Constructs new generic elements from a message payload
+  // Constructs new generic elements from a message payload -> what we send
   function buildMessageDomElements(newPayload, isUser) {
     var textArray = isUser ? newPayload.input.text : newPayload.output.text;
     if (Object.prototype.toString.call(textArray) !== '[object Array]') {
@@ -285,7 +297,7 @@ var ConversationPanel = (function () {
       if (newPayload.output.hasOwnProperty('generic')) {
 
         var generic = newPayload.output.generic;
-
+        
         generic.forEach(function (gen) {
           getResponse(responses, gen);
         });
@@ -306,7 +318,11 @@ var ConversationPanel = (function () {
           innerhtml: input
         });
       }
+      //console.log('input : '+input)
+
     }
+    //console.log('responses : '+responses)
+
     return responses;
   }
 

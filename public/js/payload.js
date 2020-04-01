@@ -48,12 +48,15 @@ var PayloadPanel = (function() {
   function payloadUpdateSetup() {
     var currentRequestPayloadSetter = Api.setRequestPayload;
     Api.setRequestPayload = function(newPayloadStr) {
+      //console.log('newPayloadStr : '+newPayloadStr)
+
       currentRequestPayloadSetter.call(Api, newPayloadStr);
       displayPayload(settings.payloadTypes.request);
     };
 
     var currentResponsePayloadSetter = Api.setResponsePayload;
     Api.setResponsePayload = function(newPayload) {
+      //console.log('newPayload : '+newPayload)
       currentResponsePayloadSetter.call(Api, newPayload);
       displayPayload(settings.payloadTypes.response);
     };
@@ -72,7 +75,7 @@ var PayloadPanel = (function() {
         payloadElement.removeChild(payloadElement.lastChild);
       }
       // Add new payload element
-      payloadElement.appendChild(payloadDiv);
+     payloadElement.appendChild(payloadDiv);
       // Set the horizontal rule to show (if request and response payloads both exist)
       // or to hide (otherwise)
       var payloadInitial = document.querySelector(settings.selectors.payloadInitial);
@@ -123,7 +126,7 @@ var PayloadPanel = (function() {
         }]
       }]
     };
-    //console.log()
+    //console.log(payloadJson)
     return Common.buildDomElement(payloadJson);
   }
 
@@ -136,11 +139,15 @@ var PayloadPanel = (function() {
 
     convert = convert.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(
       />/g, '&gt;');
+      convert = convert.replace(/(?:\r\n|\r|\n)/g, '<br>');
     convert = convert
       .replace(
         /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+-]?\d+)?)/g,
         function(match) {
-          var cls = 'number';
+          var cls = 'number';       
+          //match = "bijour"
+
+          //console.log("Match : "+match)
           if (/^"/.test(match)) {
             if (/:$/.test(match)) {
               cls = 'key';
@@ -155,7 +162,7 @@ var PayloadPanel = (function() {
           
           return '<span class="' + cls + '">' + match + '</span>';
         });
-        //console.log('convert' + convert)
+       // console.log('convert' + convert)
     return convert;
   }
 

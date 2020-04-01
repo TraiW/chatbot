@@ -123,7 +123,7 @@ var PayloadPanel = (function() {
         }]
       }]
     };
-
+    //console.log()
     return Common.buildDomElement(payloadJson);
   }
 
@@ -152,20 +152,23 @@ var PayloadPanel = (function() {
           } else if (/null/.test(match)) {
             cls = 'null';
           }
+          
           return '<span class="' + cls + '">' + match + '</span>';
         });
+        //console.log('convert' + convert)
     return convert;
   }
 
   // Used to generate a string of consecutive numbers separated by new lines
   // - used as line numbers for displayed JSON
   function createLineNumberString(numberOfLines) {
+    //console.log("numberOfLines : "+numberOfLines)
     var lineString = '';
     var prefix = '';
     for (var i = 1; i <= numberOfLines; i++) {
       lineString += prefix;
       lineString += i;
-      prefix = '\n';
+      prefix = '\n ';
     }
     return lineString;
   }

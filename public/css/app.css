@@ -296,6 +296,12 @@ input:-moz-placeholder {
   max-width: 32.0625rem;
   min-width: 29.6875rem;
   display: none;
+
+}
+
+#hiddenelement {
+  display: none;
+
 }
 
 #payload-column.full {
@@ -546,3 +552,4 @@ canvas {
 .count-particles{
   border-radius: 0 0 3px 3px;
 }
+/* ---- Nav bar ---- */

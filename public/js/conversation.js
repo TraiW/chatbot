@@ -250,7 +250,7 @@ var ConversationPanel = (function () {
       description = '<div>' + gen.description + '</div>';
     }
     if (gen.response_type === 'image') {
-      var img = '<div><img src="' + gen.source + '" width="100"></div>';
+      var img = '<div><img src="' + gen.source + '" width="150"></div>';
       responses.push({
         type: gen.response_type,
         innerhtml: title + description + img

@@ -23,16 +23,15 @@
 
     gtag('config', 'UA-162762341-1');
   </script>
+   <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 
 <body>
   
-  <!-- <div id="view-change-button" class="button" onclick="PayloadPanel.togglePanel(event, this)">
-    <img class="option full" src="../img/Chat Button.png">
-    <img class="option not-full" src="../img/Code Button.png">
-  </div> -->
+
   <div id="particles-js"></div>
   <div id="contentParent" class="responsive-columns-wrapper">
+    
     <div id="chat-column-holder" class="responsive-column content-column">
       <div class="chat-column hiddenelement" >
         <div id="scrollingChat"></div>
@@ -41,7 +40,7 @@
           <input id="textInput" class="input responsive-column" placeholder="Type something" type="text" onkeydown="ConversationPanel.inputKeyDown(event, this)"
             autofocus>
         </label>
-
+        <a href="https://happy-peku.herokuapp.com/" class="btn btn-info" role="button">Home</a>
       </div>
     </div>
     <div id="payload-column" class="fixed-column content-column">

@@ -4389,6 +4389,9 @@
 .icon-settings_brightness:before {
   content: "\e8bd";
 }
+.icon-facebook2:before {
+  content: "\ea91";
+}
 .icon-settings_cell:before {
   content: "\e8bc";
 }
